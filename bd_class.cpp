@@ -5,7 +5,14 @@
 using namespace std;
 vector<string> cola;
 
-
+string PadZeros(int number, int longitud){
+  string num_letra = std::to_string(number);
+  for (int i = num_letra.length(); i < longitud; ++i)
+    num_letra = "0" + num_letra;
+  
+  return num_letra;
+}
+//----------------------------------------------------------------------
 int callback(void *NotUsed, int argc, char **argv, char **azColName){
     for(int i = 0; i<argc; i++){
         if(argv[i]){
@@ -33,6 +40,7 @@ public:
         sqlite3_close(database);
     }
 };
+//----------------------------------------------------------------------
 string create_json(vector <string> c,vector<string> t){
     string result="{";
     auto row_atributo=t.begin();
@@ -48,6 +56,7 @@ string create_json(vector <string> c,vector<string> t){
     result[result.size()-1]='}';
     return result;
 }
+//----------------------------------------------------------------------
 void leer_json(string json,vector<string> row,string accion){
     cout<<json<<"\n///////////////////////////\n";
     json=json.substr(1,json.size()-1);
@@ -74,6 +83,38 @@ void leer_json(string json,vector<string> row,string accion){
         }
     }
 }
+//----------------------------------------------------------------------
+string create_nodo(){
+    string temp;
+    string msg="CN";
+    bool cond=true;
+    int tam=2;
+    cout<<"Puede cancelar la operacion ingresando 'q'\n";
+    cout<<"Ingrese el nombre del nodo\n";
+    getline(cin,temp);
+    temp=PadZeros(temp.size(),tam)+temp;
+    msg+=temp;
+    cout<<"///////////////////////////"<<endl;
+    while (true){
+        cout<<"Ingrese el NOMBRE de la varible \n";
+        getline(cin,temp);
+        if(temp=="q")
+            break;
+        temp=PadZeros(temp.size(),tam)+temp;
+        msg+=temp;
+
+
+        cout<<"Ingrese el VALOR de la varible \n";
+        getline(cin,temp);
+        if(temp=="q")
+            break;
+        temp=PadZeros(temp.size(),tam)+temp;
+        msg+=temp;
+        cout<<"///////////////////////////"<<endl;
+    }
+    return msg;
+}
+//----------------------------------------------------------------------
 int main(){    
     //ROWID es el id de cada elemento
     /*                        NODO
