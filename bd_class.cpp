@@ -9,8 +9,8 @@ vector<string> cola;
 int callback(void *NotUsed, int argc, char **argv, char **azColName){
     for(int i = 0; i<argc; i++){
         if(argv[i]){
-            string temp(argv[i]);
-            cola.push_back(temp);
+            string row_atributo(argv[i]);
+            cola.push_back(row_atributo);
         }
     }
     return 0;
@@ -35,18 +35,44 @@ public:
 };
 string create_json(vector <string> c,vector<string> t){
     string result="{";
-    auto temp=t.begin();
+    auto row_atributo=t.begin();
     for(auto i:c){
-        if(*temp == t[t.size()-1]){
-            result=result+*temp+":'"+i+"',";
-            temp=t.begin();    
+        if(*row_atributo == t[t.size()-1]){
+            result=result+*row_atributo+":'"+i+"',";
+            row_atributo=t.begin();    
             continue;
         }
-        result=result+*temp+":'"+i+"',";
-        temp++;       
+        result=result+*row_atributo+":'"+i+"',";
+        row_atributo++;       
     }
     result[result.size()-1]='}';
     return result;
+}
+void leer_json(string json,vector<string> row,string accion){
+    cout<<json<<"\n///////////////////////////\n";
+    json=json.substr(1,json.size()-1);
+    string xd="";
+    for (int i = 1; i < json.size(); i++){
+        int pos_1=json.find(':');
+        int pos_2=json.find(',');
+        xd=xd+json.substr(pos_1+1, pos_2-pos_1);
+        json=json.substr(pos_2+1,json.size());
+        if(i%row.size()==0 ){
+            string row_atributo="";
+            if(xd[xd.size()-1]==',')
+                xd[xd.size()-1]='\0';
+            for(auto j:row){
+                row_atributo=row_atributo+j+",";
+            }
+            row_atributo=accion+"("+row_atributo.substr(0,row_atributo.size()-1)+") values("+xd+");";
+            cout<<row_atributo<<endl;//imprime todo el mensaje para ya hacer la consulta en la bd
+            xd="";
+            continue;
+        }
+        if(pos_1==-1 || pos_2==-1){
+            break;
+        }
+    }
 }
 int main(){    
     //ROWID es el id de cada elemento
@@ -62,10 +88,14 @@ int main(){
     /////////////////////////////////////////////////////////////
     */
    //string sql="insert into Relacion(id_1,id_2) values(1,2);";
-   vector<string> temp={"nombre_dato","dato"};
+   vector<string> row_atributo={"nombre_dato","dato"};
    string sql="select nombre_dato,dato from Atributo;";
    Base_datos bd("db1.db");
    //bd.Read("Nodo");
    bd.Consulta_directa(sql);
-   cout<<create_json(cola,temp);
+    string msg=create_json(cola,row_atributo);
+    //---------------------------------------
+    string accion="insert into Nodo";
+    leer_json(msg,row_atributo,accion);
+
 }
