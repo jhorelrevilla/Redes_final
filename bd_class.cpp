@@ -115,6 +115,26 @@ string create_nodo(){
     return msg;
 }
 //----------------------------------------------------------------------
+string create_relacion(){
+    string temp;
+    string msg="CR";
+    bool cond=true;
+    int tam=2;
+    cout<<"Puede cancelar la operacion ingresando 'q'\n";
+
+    cout<<"Ingrese el nombre del primer nodo\n";
+    getline(cin,temp);
+    temp=PadZeros(temp.size(),tam)+temp;
+    msg+=temp;
+    cout<<"///////////////////////////"<<endl;
+    cout<<"Ingrese el nombre del segundo nodo\n";
+    getline(cin,temp);
+    temp=PadZeros(temp.size(),tam)+temp;
+    msg+=temp;
+    cout<<"///////////////////////////"<<endl;
+    return msg;
+}
+//----------------------------------------------------------------------
 int main(){    
     //ROWID es el id de cada elemento
     /*                        NODO
