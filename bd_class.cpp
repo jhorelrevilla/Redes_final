@@ -116,23 +116,138 @@ string create_nodo(){
 }
 //----------------------------------------------------------------------
 string create_relacion(){
-    string temp;
-    string msg="CR";
-    bool cond=true;
-    int tam=2;
-    cout<<"Puede cancelar la operacion ingresando 'q'\n";
-
-    cout<<"Ingrese el nombre del primer nodo\n";
-    getline(cin,temp);
-    temp=PadZeros(temp.size(),tam)+temp;
-    msg+=temp;
-    cout<<"///////////////////////////"<<endl;
-    cout<<"Ingrese el nombre del segundo nodo\n";
-    getline(cin,temp);
-    temp=PadZeros(temp.size(),tam)+temp;
-    msg+=temp;
-    cout<<"///////////////////////////"<<endl;
-    return msg;
+	string temp;
+	string msg="CR";
+	bool cond=true;
+	int tam=2;
+	cout<<"Puede cancelar la operacion ingresando 'q'\n";
+		
+	cout<<"Ingrese el nombre del primer nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	cout<<"Ingrese el nombre del segundo nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	return msg;
+}
+//----------------------------------------------------------------------
+string read_relacion(){
+	string temp;
+	string msg="RR";
+	bool cond=true;
+	int tam=2;
+	cout<<"Puede cancelar la operacion ingresando 'q'\n";
+	cout<<"Ingrese el nombre del nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	cout<<"Ingrese el nivel\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	return msg;
+}
+//----------------------------------------------------------------------
+string update_atributo(){
+	string temp;
+	string msg="UA";
+	bool cond=true;
+	int tam=2;
+	cout<<"Puede cancelar la operacion ingresando 'q'\n";
+	cout<<"Ingrese el nombre del nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	cout<<"Ingrese el nombre del atributo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	cout<<"Ingrese el NUEVO valor del atributo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	return msg;
+}
+//----------------------------------------------------------------------
+string update_relacion(){
+	string temp;
+	string msg="UA";
+	bool cond=true;
+	int tam=2;
+	cout<<"Puede cancelar la operacion ingresando 'q'\n";
+	cout<<"Ingrese el nombre del primer nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	cout<<"Ingrese el nombre del segundo nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	return msg;
+}
+//----------------------------------------------------------------------
+string delete_nodo(){
+	string temp;
+	string msg="DN";
+	bool cond=true;
+	int tam=2;
+	cout<<"Puede cancelar la operacion ingresando 'q'\n";
+	cout<<"Ingrese el nombre del nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	return msg;
+}
+//----------------------------------------------------------------------
+string delete_atributo(){
+	string temp;
+	string msg="DA";
+	bool cond=true;
+	int tam=2;
+	cout<<"Puede cancelar la operacion ingresando 'q'\n";
+	cout<<"Ingrese el nombre del nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	cout<<"Ingrese el nombre del atributo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	return msg;
+}
+//----------------------------------------------------------------------
+string delete_relacion(){
+	string temp;
+	string msg="DR";
+	bool cond=true;
+	int tam=2;
+	cout<<"Puede cancelar la operacion ingresando 'q'\n";
+	
+	cout<<"Ingrese el nombre del primer nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	cout<<"Ingrese el nombre del segundo nodo\n";
+	getline(cin,temp);
+	temp=PadZeros(temp.size(),tam)+temp;
+	msg+=temp;
+	cout<<"///////////////////////////"<<endl;
+	return msg;
 }
 //----------------------------------------------------------------------
 int main(){    
