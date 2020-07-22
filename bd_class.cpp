@@ -262,7 +262,7 @@ int main(){
                            
     nodo int          | nombre_dato string(20)      | dato string(20) //nodo es del nodo que pertenece ese atributo
     /////////////////////////////////////////////////////////////
-    */
+    
    //string sql="insert into Relacion(id_1,id_2) values(1,2);";
    vector<string> row_atributo={"nombre_dato","dato"};
    string sql="select nombre_dato,dato from Atributo;";
@@ -273,5 +273,90 @@ int main(){
     //---------------------------------------
     string accion="insert into Nodo";
     leer_json(msg,row_atributo,accion);
-
+	//---------------------------------------
+	*/
+	int opcion=0;
+	string clear="CLS";
+	while(true){
+		system(clear.c_str());
+		cout<<"ingrese la opcion\n";
+		cout<<"CREAR----------------- 1\n";
+		cout<<"LEER------------------ 2\n";
+		cout<<"MODIFICAR------------- 3\n";
+		cout<<"BORRAR---------------- 4\n";
+		cout<<"-----------------------\n";cin>>opcion;
+		switch(opcion){
+		case 1:{
+			system(clear.c_str());
+			cout<<"ingrese la opcion\n";
+			cout<<"CREAR NODO----------------- 1\n";
+			cout<<"CREAR RELACION------------- 2\n";
+			cin>>opcion;
+			if(opcion==1){
+				cout<<create_nodo()<<endl;
+				cin;
+			}
+			if(opcion==2){
+				cout<<create_relacion()<<endl;
+				cin;
+			}
+			break;
+		}
+		case 2:{
+			system(clear.c_str());
+			cout<<"ingrese la opcion\n";
+			cout<<"MOSTRAR NODO-------------- 1\n";
+			cout<<"MOSTRAR RELACION---------- 2\n";
+			cin>>opcion;
+			if(opcion==1){
+				cout<<<<endl;
+				cin;
+			}
+			if(opcion==2){
+				cout<<read_relacion()<<endl;
+				cin;
+			}
+			break;
+		}			case 3:{
+			system(clear.c_str());
+			cout<<"ingrese la opcion\n";
+			cout<<"MODIFICAR ATRIBUTO-------- 1\n";
+			cout<<"MODIFICAR RELACION-------- 2\n";
+			cin>>opcion;
+			if(opcion==1){
+				cout<<update_atributo()<<endl;
+				cin;
+			}
+			if(opcion==2){
+				cout<<update_relacion()<<endl;
+				cin;		
+			}
+			break;
+				}
+		case 4:{
+			system(clear.c_str());
+			cout<<"ingrese la opcion\n";
+			cout<<"BORRAR NODO--------------- 1\n";
+			cout<<"BORRAR ATRIBUTO----------- 2\n";
+			cout<<"BORRAR RELACION----------- 3\n";
+			cin>>opcion;
+			if(opcion==1){
+				cout<<delete_nodo()<<endl;
+				cin;
+			}
+			if(opcion==2){
+				cout<<delete_atributo()<<endl;
+				cin;			
+			}
+			if(opcion==3){
+				cout<<delete_relacion()<<endl;
+				cin;
+			}
+			break;
+			}
+		default:
+			system("CLS");
+			break;
+		}
+	}
 }
