@@ -4,6 +4,16 @@
 #include <ctype.h>
 #define tam 2
 using namespace std;
+
+
+bool buscar_error(string t){
+	vector<string> diccionario={"nodo","relacion","atributo","-","="};
+	for(auto w:diccionario)
+		if(t==w)
+			return true;
+	return false;
+}
+//////////////////////////////////////////////////////////////////////////////
 string PadZeros(int number, int longitud){
 	string num_letra = std::to_string(number);
 	for (int i = num_letra.length(); i < longitud; ++i)
@@ -55,6 +65,8 @@ string crear(string temp){
 		partes.push_back(t_1);
 		temp=temp.substr(t+1);
 	}
+	if(buscar_error(partes[1]))
+		return "";
 	if(partes[0]=="nodo"){
 		msg="CN";
 		msg+=formar_palabra(partes[1]);
@@ -165,7 +177,7 @@ string mostrar(string temp){
 	if(partes[0]=="relacion"){
 		msg="SR";
 		msg+=formar_palabra(partes[1]);
-		if(partes.size()>1){
+		if(partes.size()>2){
 			msg+=formar_palabra(partes[2]);
 		}
 	}
@@ -195,12 +207,12 @@ int main(int argc, char *argv[]) {
 	
 	string caso="";
 	while(true){
-		cout<<"------EJEMPLOS-------\n";
+		cout<<"\n------EJEMPLOS-------\n";
 		cout<< "crear nodo ana atributo edad=18"<<endl;
 		cout<< "crear relacion ana-juan"<<endl;
 		cout<<"///\n";
 		cout<< "actualizar ana atributo edad=16"<<endl;
-		cout<< "actualizar ana relacion billy=papa"<<endl;
+		cout<< "actualizar ana relacion billy=pedro"<<endl;
 		cout<<"///\n";
 		cout<< "borrar nodo ana"<<endl;
 		cout<< "borrar atributo ana edad"<<endl;
