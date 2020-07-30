@@ -14,15 +14,16 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+
 #include "RDT.h"
-#define tam 2
+#include "manejo_archivos.h"
 
-#define PORT    8080
+#define PORT    8080 //8080
 #define MAXLINE 512
+#define tam 2
+using std::cout; using std::cin;
+using std::string;using std::pair;
 
-using namespace std;
-using std::cout;using std::cin;using std::vector;using std::string;
 //Variables de Red
 int sockfd;
 char buffer[MAXLINE];
@@ -63,7 +64,10 @@ string EsperaPorMensaje()
 
     while (!completo)
     {
-        n = recvfrom(sockfd, (char *)buffer, MAXLINE,MSG_WAITALL, (struct sockaddr *) &servaddr,&len);
+        bzero(buffer, MAXLINE);
+        n = recvfrom(sockfd, (char *)buffer, MAXLINE,
+                                MSG_WAITALL, (struct sockaddr *) &servaddr,
+                                &len);
         if (Rdt.RecepcionPaquete(string(buffer)) )
         {
             cout << "\nPaquete Recibido";
@@ -279,7 +283,6 @@ string conver_prot(string t){
 	}
 	return "error";
 }
-//////////////////////////////////////////////////////////////////////////////
 int main()
 { 
     struct hostent *host;
@@ -295,7 +298,7 @@ int main()
         {"AA", 98} //ACK
     };
  
-    host = (struct hostent *)gethostbyname((char *)"127.0.0.1");
+    host = (struct hostent *)gethostbyname((char *)"127.0.0.1"); //"51.15.220.108"
 
     // Creating socket file descriptor
     if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) {
@@ -312,25 +315,20 @@ int main()
     //servaddr.sin_addr.s_addr = INADDR_ANY;
 
     int n;
-    string caso="";
-    for (;;){
-        /*
-        cout << "\nNombre Archivo";
-        getline(cin, mensaje_out);
+    cout << "\n>> ";
+    getline(cin, mensaje_out);
 
         //Enviar nombre de archivo a transmitir
         //Por ahora incluir numero de caracteres del nombre
         //ejm: 09texto.txt
-        EnviarMensaje("AR"+mensaje_out);
-        */
-        //Espera de mensaje
-        cout<<"\n>> ";
-        getline(cin,caso);
-		if(caso=="q")
-			break;
-        EnviarMensaje(conver_prot(caso));
-        cout<<"recibi"<<EsperaPorMensaje();
-        /*
+        //EnviarMensaje("AR"+mensaje_out);
+    conver_prot(mensaje_out);
+    if(mensaje_out!=""){
+        EnviarMensaje(mensaje_out);
+    }
+        
+    
+    for (;;){
         mensaje_in = EsperaPorMensaje();
     
         //Procesar mensaje payload
@@ -338,22 +336,23 @@ int main()
         comando = mensaje_in.substr(0,2);
         
         switch (com[comando]){
-        case 1: {//AR 
+        case 1:{ //AR 
             EnviarMensaje("OK");
             mensaje_in = EsperaPorMensaje();
-            cout << "\nMensaje Recibido:" << mensaje_in;
+            cout << "\nMensaje Recibido:"; // << mensaje_in;
+            String2Txt(mensaje_out, mensaje_in);
             break;
         }
-        case 98: {//ACK
+        case 98:{ //ACK
             cout << "\nACK Recibido";
             break;
         }
         default:
             break;
         }
-        */
     }
 
     close(sockfd);
     return 0;
 }
+

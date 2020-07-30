@@ -14,7 +14,7 @@ vector<int> slaves={
 	2,  //port del slave 2
 	3   //port del slave 3	
 };
-void function(string input){
+void rellenar_cola_nodos(string input){
 	input=input.substr(2);
 	for(int i=0;i<2;i++){
 		int t=atoi(input.substr(0,tam).c_str());
@@ -37,11 +37,11 @@ void enviar_mensaje(string m){
 int main(int argc, char *argv[]) {
 	string t="CN05billy0104edad0218";
 	string t_1="CR03ana04juan";
-	function(t_1);
+	rellenar_cola_nodos(t_1);
 	for(auto i:cola){
 		cout<<i<<endl;
 	}
-	mensaje();
+
 
 	return 0;
 }
