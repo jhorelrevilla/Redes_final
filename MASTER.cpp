@@ -15,16 +15,27 @@ vector<int> slaves={
 	3   //port del slave 3	
 };
 void rellenar_cola_nodos(string input){
-	input=input.substr(2);
-	for(int i=0;i<2;i++){
-		int t=atoi(input.substr(0,tam).c_str());
-		input=input.substr(2);
-		string xd=input.substr(0,t);
-		if(atoi(xd.c_str())){
-			break;
-		}
-		cola.push_back(xd);
-		input=input.substr(t);
+	cola.clear() ;
+  	if (input[1]!='R' ){
+    	input=input.substr(2);
+    	int t=atoi(input.substr(0,tam).c_str());
+    	input=input.substr(2);
+   	 	string xd=input.substr(0,t); 
+    	cola.push_back(xd);
+	    input=input.substr(t);
+  	}
+  	else{
+    	input=input.substr(2);
+    	while (true ){
+      		int t=atoi(input.substr(0,tam).c_str());
+      		if(! t){
+        		break;
+	      	}
+      		input=input.substr(2);
+      		string xd=input.substr(0,t); 
+      		cola.push_back(xd);
+      		input=input.substr(t);
+    	}
 	}
 }
 ////////////////////////////////////////////////////
