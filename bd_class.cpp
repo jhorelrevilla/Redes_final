@@ -252,7 +252,7 @@ string delete_relacion(){
 //----------------------------------------------------------------------
 int main(){    
     //ROWID es el id de cada elemento
-    /*                        NODO
+    /\                     NODO
     nombre string(20)
     /////////////////////////////////////////////////////////////
                             Relacion                          //relacion nodo  a nodo
@@ -264,7 +264,7 @@ int main(){
     /////////////////////////////////////////////////////////////
     
    //string sql="insert into Relacion(id_1,id_2) values(1,2);";
-   vector<string> row_atributo={"nombre_dato","dato"};
+   vector<string> row_atributo={"atributo","valor"};
    string sql="select nombre_dato,dato from Atributo;";
    Base_datos bd("db1.db");
    //bd.Read("Nodo");
@@ -274,7 +274,8 @@ int main(){
     string accion="insert into Nodo";
     leer_json(msg,row_atributo,accion);
 	//---------------------------------------
-	*/
+	
+/*
 	int opcion=0;
 	string clear="CLS";
 	while(true){
@@ -317,7 +318,8 @@ int main(){
 				cin;
 			}
 			break;
-		}			case 3:{
+		}	
+		case 3:{
 			system(clear.c_str());
 			cout<<"ingrese la opcion\n";
 			cout<<"MODIFICAR ATRIBUTO-------- 1\n";
@@ -358,5 +360,6 @@ int main(){
 			system("CLS");
 			break;
 		}
-	}
+	*/
+	//}
 }
